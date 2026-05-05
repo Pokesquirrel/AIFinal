@@ -1,4 +1,3 @@
-
 -- Handles vision, hearing, and perception logic for all AI
 local SensoryModule = {}
 
