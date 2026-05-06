@@ -1,3 +1,5 @@
+--Initially used to plan for a lockpicking minigame
+--Scrapped as the hacking minigame was decided to be enough for a demo
 local UIS = game:GetService("UserInputService")
 local event = game.ReplicatedStorage.GameEvents.LockpickEvent
 
