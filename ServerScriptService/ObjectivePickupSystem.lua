@@ -1,8 +1,9 @@
+--Handles objective pickup collection
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 
 local PICKUP_FOLDER_NAME = "ObjectivePickups"
-
+-- Debounce to stop multiple collections of the same pickup
 local collectedPickups = {}
 
 local Objective = require(game.ServerScriptService.Game.ObjectiveSystem)
