@@ -1,3 +1,4 @@
+--Main manager for the AI, and if more were to be made
 local HeroAI = require(script.Parent.NPCs.HeroAI)
 
 local AIManager = {}
@@ -5,6 +6,7 @@ AIManager.Agents = {}
 AIManager.HeroSpawned = false
 
 function AIManager:Init()
+	--Helps spawn HeroAI only after the player collects the first objective
 end
 
 function AIManager:SpawnHero()
