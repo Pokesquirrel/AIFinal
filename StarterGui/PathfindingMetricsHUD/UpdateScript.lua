@@ -1,3 +1,4 @@
+--This is used to visually show how fast the AI determines a new path to find the player
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 
