@@ -1,3 +1,4 @@
+--Handles noise detection for the AI
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 
