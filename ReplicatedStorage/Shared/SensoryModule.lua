@@ -1,10 +1,10 @@
--- Handles vision, hearing, and perception logic for all AI
+--Handles vision, hearing, and perception logic for all AI
 local SensoryModule = {}
 
--- SETTINGS
-local FOV_ANGLE = 60              -- degrees (vision cone)
-local HEARING_FALLOFF = 10        -- multiplier for sound range
-local WALL_ATTENUATION = 0.35     -- % of sound that passes through walls
+--Settings
+local FOV_ANGLE = 60              --Vision cone
+local HEARING_FALLOFF = 10        --Multiplier for sound range
+local WALL_ATTENUATION = 0.35     --% of sound that passes through walls
 
 function SensoryModule.CanSee(viewerModel, targetModel, maxDistance)
 	if not viewerModel or not targetModel then return false end
@@ -32,7 +32,8 @@ function SensoryModule.CanSee(viewerModel, targetModel, maxDistance)
 	end
 
 	local rayParams = RaycastParams.new()
-	-- Exclude viewer and debug folder from raycast
+	
+	--Exclude viewer and debug folder from raycast
 	local debugFolder = workspace:FindFirstChild("VisionDebugParts")
 	if debugFolder then
 		rayParams.FilterDescendantsInstances = {viewerModel, debugFolder}
@@ -60,7 +61,7 @@ function SensoryModule.CanHear(listenerPos, soundPos, intensity)
 	local direction = soundPos - listenerPos
 	local distance = direction.Magnitude
 
-	-- Max hearing range based on intensity
+	--Max hearing range based on intensity
 	local maxRange = intensity * HEARING_FALLOFF
 
 	if distance > maxRange then
@@ -73,7 +74,8 @@ function SensoryModule.CanHear(listenerPos, soundPos, intensity)
 	local result = workspace:Raycast(listenerPos, direction, rayParams)
 
 	if result then
-		-- Sound is muffled
+		
+		--Sound is muffled
 		return distance < (maxRange * WALL_ATTENUATION)
 	end
 
@@ -102,12 +104,12 @@ function SensoryModule.DetectPlayer(aiModel, playerCharacter, visionRange, heari
 
 	if not aiRoot or not playerRoot then return false end
 
-	-- 1. Vision check
+	--Vision check
 	if SensoryModule.CanSee(aiModel, playerCharacter, visionRange) then
 		return true, "Vision"
 	end
 
-	-- 2. Hearing check
+	--Hearing check
 	local movementState = playerCharacter:GetAttribute("MovementState") or "Walk"
 	local noise = SensoryModule.GetMovementNoise(movementState)
 
@@ -118,7 +120,7 @@ function SensoryModule.DetectPlayer(aiModel, playerCharacter, visionRange, heari
 	return false, nil
 end
 
--- Debug Stuff
+--Debug Stuff
 
 function SensoryModule.DebugDrawLine(startPos, endPos, color)
 	local part = Instance.new("Part")
