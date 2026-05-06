@@ -1,4 +1,4 @@
--- Tracks last known positions and durations
+--Tracks last known positions and durations for the AI's memory
 
 local MemorySystem = {}
 
