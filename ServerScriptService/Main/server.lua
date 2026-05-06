@@ -1,3 +1,4 @@
+--Makes sure that the stuff needed for the game and system start and exist
 local GameEventsSetup = game.ReplicatedStorage:WaitForChild("GameEventsSetup")
 
 local AIManager = require(game.ServerScriptService.AI.AIManager)
