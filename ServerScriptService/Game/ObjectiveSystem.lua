@@ -1,8 +1,10 @@
+--Sets the objective system of the game (Collecting items)
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local event = ReplicatedStorage.GameEvents.ObjectiveUpdate
 
 local ObjectiveSystem = {}
 
+--Setting the Objective limit needed to win
 ObjectiveSystem.Total = 10
 ObjectiveSystem.Collected = 0
 
