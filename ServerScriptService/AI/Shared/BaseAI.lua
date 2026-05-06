@@ -1,3 +1,4 @@
+--Main foundation for AI
 local PathfindingService = game:GetService("PathfindingService")
 
 local BaseAI = {}
@@ -10,6 +11,7 @@ function BaseAI.new(model)
 	self.Humanoid = model:WaitForChild("Humanoid")
 	self.Root = model:WaitForChild("HumanoidRootPart")
 
+	--State tracking
 	self.Active = true
 	self.State = "Idle"
 
