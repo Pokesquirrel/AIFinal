@@ -1,3 +1,5 @@
+--System that would have been used to determine and predict a player's behavior
+--This was not implemented
 local Players = game:GetService("Players")
 
 local Tracker = {}
