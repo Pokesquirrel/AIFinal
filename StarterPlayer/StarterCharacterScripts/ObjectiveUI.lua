@@ -1,6 +1,9 @@
+--Top left GUI that allows the player to track their progression in completing the game (Collecting all the objective pieces)
 local event = game.ReplicatedStorage.GameEvents.ObjectiveUpdate
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
+
+--Prevents duplicates from spawning
 local gui = playerGui:FindFirstChild("ObjectiveUI")
 
 local label
