@@ -1,3 +1,6 @@
+--This is used to create a bobbing movement in first-person in order to prevent it from feeling like the player was sliding around.
+--This is also used for when the player is hacking a door and switches the camera to third-person to allow the player to use their mouse.
+--Roblox disables mouse movement if the player is in first-person.
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
@@ -20,6 +23,7 @@ local function setFirstPerson()
 	end
 end
 
+--Sets player to first-person in the game
 setFirstPerson()
 
 player.CharacterAdded:Connect(function()
@@ -50,6 +54,7 @@ RunService.RenderStepped:Connect(function(dt)
 	end
 end)
 
+--Used for when the player needs to hack
 local function setHackingMode(hacking)
 	isHacking = hacking
 	local player = Players.LocalPlayer
