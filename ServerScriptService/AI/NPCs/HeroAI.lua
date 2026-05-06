@@ -1,3 +1,4 @@
+--The brain of the AI system
 local BaseAI = require(game.ServerScriptService.AI.Shared.BaseAI)
 local Sensory = require(game.ReplicatedStorage.Shared.SensoryModule)
 local Memory = require(game.ReplicatedStorage.Shared.MemorySystem)
@@ -13,6 +14,7 @@ local JumpscareEvent = ReplicatedStorage.GameEvents.JumpscareEvent
 local HeroAI = setmetatable({}, BaseAI)
 HeroAI.__index = HeroAI
 
+--Debugging information
 local DebugMetricsEvent = ReplicatedStorage.GameEvents.DebugMetrics
 
 function HeroAI.new(model)
@@ -36,6 +38,7 @@ function HeroAI.new(model)
 	return self
 end
 
+--Heuristic targetting system
 function HeroAI:ScoreTarget(player)
 	local root = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
 	if not root then return -math.huge end
@@ -44,9 +47,11 @@ function HeroAI:ScoreTarget(player)
 	local stress = Threat:GetStress(player)
 	local visible = Sensory.CanSee(self.Model, player.Character, 60)
 
+	--Equation used to determine which player to target
 	return (100 - dist) + (stress * 2) + (visible and 50 or 0)
 end
 
+--AI decides which state to be in
 function HeroAI:Think()
 	local currentTime = tick()
 
@@ -66,6 +71,7 @@ function HeroAI:Think()
 		end
 	end
 
+	--If the AI is already in the Hunt State
 	if self.State == "Hunt" then
 		if visiblePlayer then
 			self.HuntTimer = currentTime
@@ -84,6 +90,7 @@ function HeroAI:Think()
 		return
 	end
 
+	--If the AI has not entered the Hunt State when it should
 	if visiblePlayer then
 		Metrics:PlayerDetected()
 		self.State = "Hunt"
@@ -94,6 +101,7 @@ function HeroAI:Think()
 		return
 	end
 
+	--The AI's patrol targeting
 	local bestScore = -math.huge
 	local bestPlayer = nil
 
@@ -112,6 +120,7 @@ function HeroAI:Think()
 	self.HuntTarget = nil
 end
 
+--A* Path System
 function HeroAI:GetPath(goalPos)
 	local now = tick()
 
@@ -130,7 +139,8 @@ function HeroAI:GetPath(goalPos)
 	end
 
 	self.LastPathTime = now
-	
+
+	--Debug timer for pathfinding decision
 	local startTime = os.clock()
 	self.CurrentPath = AStar.FindPath(self.Root.Position, goalPos, 6)
 	local endTime = os.clock()
@@ -143,6 +153,8 @@ function HeroAI:GetPath(goalPos)
 	return self.CurrentPath
 end
 
+
+--AI Path Following
 function HeroAI:FollowPathStep()
 	if not self.CurrentPath then return end
 
@@ -159,6 +171,7 @@ function HeroAI:FollowPathStep()
 	end
 end
 
+--A* Chase Function
 function HeroAI:Chase()
 	if not self.Target or not self.Target.Character then 
 		self.Target = nil
@@ -173,6 +186,7 @@ function HeroAI:Chase()
 
 	local dist = (self.Root.Position - root.Position).Magnitude
 
+	--Killing Player System
 	if dist < 5 then
 		local hum = self.Target.Character:FindFirstChild("Humanoid")
 		if hum then
@@ -191,6 +205,7 @@ function HeroAI:Chase()
 	end
 end
 
+--Hunt Function
 function HeroAI:Hunt()
 	if not self.HuntTarget or not self.HuntTarget.Character then 
 		self.State = "Patrol"
@@ -209,6 +224,7 @@ function HeroAI:Hunt()
 
 	local dist = (self.Root.Position - root.Position).Magnitude
 
+	--Killing Player System
 	if dist < 5 then
 		local hum = self.HuntTarget.Character:FindFirstChild("Humanoid")
 		if hum then
@@ -224,6 +240,7 @@ function HeroAI:Hunt()
 	self.Humanoid:MoveTo(root.Position)
 end
 
+--Search/Patrol System
 function HeroAI:Search()
 	local job = Director:PopJob()
 
@@ -247,6 +264,7 @@ function HeroAI:Search()
 	end
 end
 
+--Main Step
 function HeroAI:RunStep()
 	self:Think()
 
@@ -261,6 +279,7 @@ function HeroAI:RunStep()
 	self:FollowPathStep()
 end
 
+-- Loop System
 function HeroAI:Run()
 	task.spawn(function()
 		while self.Active do
