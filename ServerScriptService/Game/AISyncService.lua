@@ -1,3 +1,4 @@
+--This is used to connect the DirectorAI with the actual AI to help move them between jobs and states
 local Director = require(game.ServerScriptService.DirectorAI)
 
 local Sync = {}
