@@ -1,3 +1,4 @@
+--Handles what should happen if the player was to be touched by the AI
 local Players = game:GetService("Players")
 local GameState = require(script.Parent.GameStateManager)
 
