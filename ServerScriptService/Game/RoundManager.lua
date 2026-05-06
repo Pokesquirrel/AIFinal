@@ -1,3 +1,4 @@
+--Starts the game loop, and has a system for if a reset function was ever added
 local Players = game:GetService("Players")
 local GameState = require(script.Parent.GameStateManager)
 
