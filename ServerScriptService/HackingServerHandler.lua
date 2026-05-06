@@ -1,3 +1,4 @@
+--Handles what happens after the hacking minigame door is opened, preventing the interaction from staying after the door is opened
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local hackingEvent = ReplicatedStorage.GameEvents:WaitForChild("HackingEvent")
