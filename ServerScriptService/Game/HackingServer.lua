@@ -1,3 +1,4 @@
+--Handles the outcome of the hacking minigame
 local event = game.ReplicatedStorage.GameEvents.HackingEvent
 local Threat = require(game.ServerScriptService.AI.Systems.ThreatSystem)
 local Objective = require(script.Parent.ObjectiveSystem)
