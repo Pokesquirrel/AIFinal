@@ -1,3 +1,4 @@
+--Handles if the end of the game after the players win or lose, and if they were to restart
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local event = ReplicatedStorage.GameEvents.GameStateEvent
 
