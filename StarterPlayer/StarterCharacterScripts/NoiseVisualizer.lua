@@ -1,3 +1,5 @@
+--Used by the SensoryModule to see if the AI should hear any noises
+--Does not create any visual results for the players
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
