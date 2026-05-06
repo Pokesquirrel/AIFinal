@@ -4,7 +4,7 @@ local event = ReplicatedStorage.GameEvents.ObjectiveUpdate
 
 local ObjectiveSystem = {}
 
---Setting the Objective limit needed to win
+--Setting the objective limit needed to win
 ObjectiveSystem.Total = 10
 ObjectiveSystem.Collected = 0
 
