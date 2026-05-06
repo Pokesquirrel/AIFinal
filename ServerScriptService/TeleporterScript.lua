@@ -1,3 +1,4 @@
+--This script is used mainly to setup two way teleporters for the "vent" system, using pairs of models called "TeleporterA" and "teleporterB"
 local debounce = {}
 
 local function setupTeleporterPair(model)
@@ -5,7 +6,8 @@ local function setupTeleporterPair(model)
 	local partB = model:FindFirstChild("TeleporterB")
 	
 	if not partA or not partB then return end
-	
+
+	--A to B
 	partA.Touched:Connect(function(otherPart)
 		local character = otherPart.Parent
 		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
@@ -22,7 +24,8 @@ local function setupTeleporterPair(model)
 			debounce[character] = nil
 		end
 	end)
-	
+
+	--B to A
 	partB.Touched:Connect(function(otherPart)
 		local character = otherPart.Parent
 		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
@@ -41,12 +44,14 @@ local function setupTeleporterPair(model)
 	end)
 end
 
+--For already existing teleporters
 for _, descendant in ipairs(workspace:GetDescendants()) do
 	if descendant:IsA("Model") and descendant.Name == "TeleporterPair" then
 		setupTeleporterPair(descendant)
 	end
 end
 
+--For if new teleporters were to spawn while the game is active
 workspace.DescendantAdded:Connect(function(descendant)
 	if descendant:IsA("Model") and descendant.Name == "TeleporterPair" then
 		task.wait(0.1)
