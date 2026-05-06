@@ -1,3 +1,4 @@
+--Allows the DebugUI to popup
 local event = game.ReplicatedStorage.GameEvents.DebugMetrics
 
 local gui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
