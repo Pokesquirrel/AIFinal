@@ -1,3 +1,4 @@
+--Sets the controls and movement restrctions for the player
 local Players = game:GetService("Players")
 local UserInput = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
@@ -13,10 +14,12 @@ local maxStamina = 100
 local isSprinting = false
 local isCrouching = false
 
+--Settings
 local WALK_SPEED = 10
 local SPRINT_SPEED = 18
 local CROUCH_SPEED = 6
 
+--Input detection
 UserInput.InputBegan:Connect(function(input)
 	if input.KeyCode == Enum.KeyCode.LeftShift then
 		isSprinting = true
@@ -33,6 +36,7 @@ UserInput.InputEnded:Connect(function(input)
 	end
 end)
 
+--Overall loop
 RunService.RenderStepped:Connect(function(dt)
 	if not char or not humanoid then return end
 
