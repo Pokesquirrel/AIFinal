@@ -1,3 +1,4 @@
+--This is mainly used to make sure the HUD fixes itself whenever the game's resolution changes
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local player = Players.LocalPlayer
