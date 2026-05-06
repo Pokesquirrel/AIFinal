@@ -1,3 +1,4 @@
+--To play a jumpscare if the player gets caught by the "Hero"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 local SoundService = game:GetService("SoundService")
@@ -72,6 +73,7 @@ local function showJumpscare()
 	end)
 end
 
+--Checks if Jumpscare event activates
 JumpscareEvent.OnClientEvent:Connect(function()
 	print("[JumpscareUI] Jumpscare triggered!")
 	showJumpscare()
