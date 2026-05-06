@@ -1,3 +1,4 @@
+--Victory screen popup for when the players win
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local GameStateEvent = ReplicatedStorage.GameEvents.GameStateEvent
 local Players = game:GetService("Players")
@@ -5,6 +6,7 @@ local TweenService = game:GetService("TweenService")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
+--Creates the GUI popup
 local function createVictoryScreen()
 	local screenGui = Instance.new("ScreenGui")
 	screenGui.Name = "VictoryScreen"
@@ -67,6 +69,7 @@ end
 
 local victoryGui, victoryFrame = createVictoryScreen()
 
+--Checks for victory game state
 GameStateEvent.OnClientEvent:Connect(function(state, winnerName)
 	if state == "WIN" then
 		victoryFrame.WinnerName.Text = "Winner: " .. winnerName
@@ -84,6 +87,7 @@ GameStateEvent.OnClientEvent:Connect(function(state, winnerName)
 		
 		print("[VictoryUI] Victory screen displayed for " .. winnerName)
 	elseif state == "LOSE" then
+			--In case a lose screen was ever added
 		print("[VictoryUI] Player lost: " .. winnerName)
 	end
 end)
