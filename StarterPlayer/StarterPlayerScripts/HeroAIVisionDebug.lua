@@ -1,3 +1,5 @@
+--Visual HeroAI Debugging Tool (Shows the HeroAI's vision cone)
+--"/debug vision" or F9 activates/deactivates the debug tool
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -8,10 +10,12 @@ local MAX_DISTANCE = 60
 local debugEnabled = false
 local debugParts = {}
 
+--Used to create folder for debug visuals to spawn
 local debugFolder = Instance.new("Folder")
 debugFolder.Name = "VisionDebugParts"
 debugFolder.Parent = workspace
 
+--Creates the cone
 local function createConePart()
 	local part = Instance.new("Part")
 	part.Name = "VisionConeDebug"
@@ -24,6 +28,8 @@ local function createConePart()
 	return part
 end
 
+--Stuff below creates line for being in the AI's vision
+--The inital red line for when the player is outside the AI's vision was disabled
 local function createLinePart()
 	local part = Instance.new("Part")
 	part.Name = "VisionLineDebug"
@@ -174,7 +180,8 @@ local function updateDebug()
 	for _, player in pairs(Players:GetPlayers()) do
 		if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
 			local visible = canSeeTarget(heroModel, player.Character)
-			
+
+			--Draws Green line when player is visible to the AI during debug
 			if visible then
 				local line = drawLine(
 					heroRoot.Position,
