@@ -1,3 +1,4 @@
+--Helps with sending found metrics
 local Metrics = require(script.Parent.Parent.Systems.Metrics)
 local event = game.ReplicatedStorage.GameEvents.DebugMetrics
 
