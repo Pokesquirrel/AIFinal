@@ -1,3 +1,4 @@
+--This helps the hacking minigame start itself when the player tries to initiate the minigame
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local player = Players.LocalPlayer
