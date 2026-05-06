@@ -1,3 +1,4 @@
+--Initially used to test a noninteractive version of the hacking and lockpicking minigame
 local Objective = require(script.Parent.ObjectiveSystem)
 
 local InteractionSystem = {}
