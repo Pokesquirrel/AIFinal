@@ -1,3 +1,4 @@
+--Manages the game pacing, player stress, and Hunter jobs
 local Players = game:GetService("Players")
 local Threat = require(game.ServerScriptService.AI.Systems.ThreatSystem)
 
