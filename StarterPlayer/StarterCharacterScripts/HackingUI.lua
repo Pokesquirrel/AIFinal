@@ -1,3 +1,4 @@
+--Hacking minigame popup
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
