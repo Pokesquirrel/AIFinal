@@ -1,3 +1,4 @@
+--Manages the "stress" levels of the players
 local Players = game:GetService("Players")
 local Metrics = require(script.Parent.Metrics)
 
@@ -21,6 +22,7 @@ function ThreatSystem:AddStress(player, amount)
 	current = math.clamp(current + amount, 0, 100)
 	self.StressLevels[name] = current
 
+	--Debug for detecting Player
 	if current > 60 then
 		Metrics:PlayerDetected()
 	end
