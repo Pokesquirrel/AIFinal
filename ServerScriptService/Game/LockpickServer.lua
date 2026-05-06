@@ -1,3 +1,4 @@
+--System implementation for the lockpick minigame if it was added
 local event = game.ReplicatedStorage.GameEvents.LockpickEvent
 local Threat = require(game.ServerScriptService.AI.Systems.ThreatSystem)
 local Objective = require(script.Parent.ObjectiveSystem)
