@@ -1,3 +1,6 @@
+--This system was used primarily for player detection to see if the AI could find the player.
+--Tracking players that were caught and escaped felt redundant.
+
 local Metrics = {}
 
 Metrics.Data = {
